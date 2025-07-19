@@ -1,0 +1,6 @@
+@media only screen and (orientation: portrait) {
+    header {
+        position: static;
+        top:0;
+    }
+}
