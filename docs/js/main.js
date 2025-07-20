@@ -1,41 +1,3 @@
-function categoryFilter(category) {
-    // Implement filtering logic here
-     console.log("Filtering by category:", category);
-}
-function authorFilter(author) {
-    // Implement filtering logic here
-    console.log("Filtering by author:", author);
-}
-function clearFilters() {
-    // Implement logic to clear filters
-    console.log("Clearing all filters");
-}
-function getCategories() {
-    // This function should return an array of categories
-    return ["Category 1", "Category 2", "Category 3"];
-}
-
-function loadHeader() {
-    // Try to fetch 'header.html', if it fails, try '../../header.html'
-    fetch('header.html')
-        .then(response => {
-            if (!response.ok) throw new Error('header.html not found');
-            return response.text();
-        })
-        .catch(() => {
-            // Try the fallback path
-            return fetch('../../header.html')
-                .then(response => {
-                    if (!response.ok) throw new Error('../../header.html not found');
-                    return response.text();
-                });
-        })
-        .then(data => {
-            document.querySelector('header').innerHTML = data;
-        })
-        .catch(error => console.error('Error loading header:', error));
-}
-
 function loadPosts() {
     // Fetch the table of contents JSON file
     fetch('api/toc.json')
@@ -65,25 +27,9 @@ function loadPosts() {
                     .catch(error => console.error(`Error loading post ${post}:`, error));
             });
         })  
-    }
+}
 
-function loadFooter() {
-    // Try to fetch 'footer.html', if it fails, try '../../footer.html'
-    fetch('footer.html')
-        .then(response => {
-            if (!response.ok) throw new Error('footer.html not found');
-            return response.text();
-        })
-        .catch(() => {
-            // Try the fallback path
-            return fetch('../../footer.html')
-                .then(response => {
-                    if (!response.ok) throw new Error('../../footer.html not found');
-                    return response.text();
-                });
-        })
-        .then(data => {
-            document.querySelector('footer').innerHTML = data;
-        })
-        .catch(error => console.error('Error loading footer:', error));
+function filterPosts() {
+    //if page loads with parameters in url, filter out posts that dont include the specified author, tags, or id.
+    
 }
