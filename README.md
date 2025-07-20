@@ -4,11 +4,9 @@ This is a website for two artists and philosophers who operate under the pseudon
 
 # TODO
 
-- optimize mobile css
 - sort by author
 - sort by tag
 - user profiles
-- use absolute image sources instead of relative (easier for now)
-- use absolute link for home button
-- get better method for relative links
+- replace ai placeholder art with human art
+- limit amount of posts that display at once
 - etc. etc. etc.

@@ -1,0 +1,9 @@
+{
+    "id": "admin_test",
+    "title": "Admin Test",
+    "description": "This is a test post for the admin section.",
+    "date": "2025-07-19",
+    "author": "Admin",
+    "image": "admin_logo.png",
+    "tags": ["test", "admin"]
+}

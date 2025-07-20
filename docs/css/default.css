@@ -68,7 +68,7 @@ footer {
     background-color: #f8f9fa;
     text-align: center;
     padding: 10px;
-    position: relative;
+    position:fixed;
     bottom: 0;
     width: 100%;
 }
@@ -144,3 +144,86 @@ article {
     gap: 20px;
 }
 
+article .post-image {
+    max-height:80vh;
+    margin-bottom: 10px;
+    margin-left:auto;
+    margin-right:auto;
+    display: block;
+
+}
+
+article h3 {
+    font-size: large;
+    margin-bottom: 10px;
+}
+article .description {
+    margin-bottom: 10px;
+}
+article .date {
+    font-size: small;
+    color: #888;
+}
+article .author {
+    font-size: large;
+    color: #555;
+}
+article .author img {
+    height: 1em;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+article .author a {
+    color: #007bff;
+    text-decoration: none;
+}
+article .author a:hover {
+    text-decoration: underline;
+}
+article .tags {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+article .tags li {
+    display: inline;
+    margin-right: 10px;
+}
+article .tags li a {
+    color: #007bff;
+    text-decoration: none;
+}
+article .tags li a:hover {
+    text-decoration: underline;
+}
+article .blur-bg {
+    width:100%;
+    background-size: cover;
+    background-position: center;
+    background-color: #888;
+    background-blend-mode: soft-light;
+}
+artcle .read-more {
+    display: block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+article .read-more:hover {
+    text-decoration: underline;
+}
+
+@media (orientation: landscape) {
+    header {
+        float: left;
+        width: 25%;
+        height: 100vh;
+        padding: 20px;
+        position: fixed;
+    }
+    .posts {
+        margin-left: 25%;
+        padding: 20px;
+    }
+}

@@ -37,28 +37,36 @@ function loadHeader() {
 }
 
 function loadPosts() {
-    // get the list of posts from 'posts/toc.json'
-    // the "posts" variable should be an array of post directories
-    // for each directory, the post source file is at index.html in that directory
-    // where this function is called, display the inner html of the article element from each file as new article elements
-    fetch('posts/toc.json')
+    // Fetch the table of contents JSON file
+    fetch('api/toc.json')
         .then(response => response.json())
         .then(posts => {
             console.log(posts); // See what you actually get
-            const articleContainer = document.querySelector('.posts');
             posts.forEach(post => {
-                fetch(`posts/${post}/index.html`)
-                    .then(response => response.text())
+                fetch(`api/${post}.json`)
+                    .then(response => response.json())
                     .then(data => {
-                        const articleElement = document.createElement('article');
-                        articleElement.innerHTML = data;
-                        articleContainer.appendChild(articleElement);
+                        const postElement = document.createElement('article');
+                        postElement.innerHTML = `
+                            <h3 id="${data.id}">${data.title}</h3>
+                            <div class="blur-bg" style="background-image:url(images/${data.image})"><img src="images/${data.image}" href="images/${data.image}" alt="${data.title}" class="post-image"/></div>
+                            <p class="description">${data.description}</p>
+                            <div class="post-meta">
+                            <p class="author"><img src="images/${data.author}.png"/><a href="?author=${data.author}">${data.author}</a></p>
+                            <p class="date">${new Date(data.date).toLocaleDateString()}</p>
+                            <ul class="tags">
+                                ${data.tags.map(tag => `<li><a href="?tag=${tag}">#${tag}</a></li>`).join('')}
+                            </ul>
+                            </div>
+                            <a href="?id=${post}" class="read-more">View Post</a>
+                        `;
+                        document.querySelector('main').appendChild(postElement);
                     })
                     .catch(error => console.error(`Error loading post ${post}:`, error));
             });
-        })
-        .catch(error => console.error('Error loading posts:', error));
-}
+        })  
+    }
+
 function loadFooter() {
     // Try to fetch 'footer.html', if it fails, try '../../footer.html'
     fetch('footer.html')
