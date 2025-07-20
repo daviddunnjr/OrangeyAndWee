@@ -27,9 +27,50 @@ function loadPosts() {
                     .catch(error => console.error(`Error loading post ${post}:`, error));
             });
         })  
+    filterPosts();
 }
 
 function filterPosts() {
     //if page loads with parameters in url, filter out posts that dont include the specified author, tags, or id.
-    
+
+    // Get URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const author = params.get('author');
+    const tag = params.get('tag');
+    const id = params.get('id');
+
+    // Get all post articles
+    const articles = document.querySelectorAll('main article');
+    articles.forEach(article => {
+        let show = true;
+
+        // Filter by author
+        if (author) {
+            const authorElem = article.querySelector('.author a');
+            if (!authorElem || authorElem.textContent !== author) {
+                show = false;
+            }
+        }
+
+        // Filter by tag
+        if (tag) {
+            const tagElems = article.querySelectorAll('.tags li a');
+            let hasTag = false;
+            tagElems.forEach(tagElem => {
+                if (tagElem.textContent.replace('#', '') === tag) {
+                    hasTag = true;
+                }
+            });
+            if (!hasTag) show = false;
+        }
+
+        // Filter by id
+        if (id) {
+            const postId = article.querySelector('h3').id;
+            if (postId !== id) show = false;
+        }
+
+        // Show or hide the article
+        article.style.display = show ? '' : 'none';
+    });
 }
