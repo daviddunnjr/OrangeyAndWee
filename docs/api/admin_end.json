@@ -2,7 +2,7 @@
     "id": "admin_end",
     "title": "End of Content",
     "description": "You have reached the end of the content. Thank you for visiting!",
-    "date": "",
+    "date": "2025-01-01",
     "author": "Admin",
     "image": "admin_logo.png",
     "tags": ["admin", "end"]
