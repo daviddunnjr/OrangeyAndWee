@@ -25,14 +25,19 @@ function loadPosts() {
                     const postElement = document.createElement('article');
                     postElement.innerHTML = `
                         <h3 id="${data.id}">${data.title}</h3>
-                        <div class="blur-bg" style="background-image:url(images/${data.image})"><img src="images/${data.image}" href="images/${data.image}" alt="${data.title}" class="post-image"/></div>
+                        <div class="blur-bg" style="background-image:url(images/${data.image})">
+                            <img src="images/${data.image}" href="images/${data.image}" alt="${data.title}" class="post-image"/>
+                        </div>
                         <p class="description">${data.description}</p>
                         <div class="post-meta">
-                        <p class="author"><img src="images/${data.author}.png"/><a href="?author=${data.author}">${data.author}</a></p>
-                        <p class="date">${new Date(data.date).toLocaleDateString()}</p>
-                        <ul class="tags">
-                            ${data.tags.map(tag => `<li><a href="?tag=${tag}">#${tag}</a></li>`).join('')}
-                        </ul>
+                            <p class="author">
+                                <img src="images/${data.author}.png"/>
+                                <a href="?author=${data.author}">${data.author}</a>
+                            </p>
+                            <p class="date">${data.date}</p>
+                            <ul class="tags">
+                                ${data.tags.map(tag => `<li><a href="?tag=${tag}">#${tag}</a></li>`).join('')}
+                            </ul>
                         </div>
                         <a href="?id=${posts[i]}" class="read-more">View Post</a>
                     `;
