@@ -1,33 +1,45 @@
 function loadPosts() {
+    // Get URL parameters
+    const params = new URLSearchParams(window.location.search);
+    const author = params.get('author');
+    const tag = params.get('tag');
+    const id = params.get('id');
+
     // Fetch the table of contents JSON file
     fetch('api/toc.json')
         .then(response => response.json())
         .then(posts => {
-            console.log(posts); // See what you actually get
-            posts.forEach(post => {
-                fetch(`api/${post}.json`)
-                    .then(response => response.json())
-                    .then(data => {
-                        const postElement = document.createElement('article');
-                        postElement.innerHTML = `
-                            <h3 id="${data.id}">${data.title}</h3>
-                            <div class="blur-bg" style="background-image:url(images/${data.image})"><img src="images/${data.image}" href="images/${data.image}" alt="${data.title}" class="post-image"/></div>
-                            <p class="description">${data.description}</p>
-                            <div class="post-meta">
-                            <p class="author"><img src="images/${data.author}.png"/><a href="?author=${data.author}">${data.author}</a></p>
-                            <p class="date">${new Date(data.date).toLocaleDateString()}</p>
-                            <ul class="tags">
-                                ${data.tags.map(tag => `<li><a href="?tag=${tag}">#${tag}</a></li>`).join('')}
-                            </ul>
-                            </div>
-                            <a href="?id=${post}" class="read-more">View Post</a>
-                        `;
-                        document.querySelector('main').appendChild(postElement);
-                    })
-                    .catch(error => console.error(`Error loading post ${post}:`, error));
+            // Fetch all post data in order
+            const postPromises = posts.map(post =>
+                fetch(`api/${post}.json`).then(res => res.json()).catch(error => null)
+            );
+            Promise.all(postPromises).then(postDataArray => {
+                postDataArray.forEach((data, i) => {
+                    if (!data) return; // skip failed fetches
+
+                    // Filtering logic before rendering
+                    if (author && data.author !== author) return;
+                    if (tag && !data.tags.includes(tag)) return;
+                    if (id && data.id !== id) return;
+
+                    const postElement = document.createElement('article');
+                    postElement.innerHTML = `
+                        <h3 id="${data.id}">${data.title}</h3>
+                        <div class="blur-bg" style="background-image:url(images/${data.image})"><img src="images/${data.image}" href="images/${data.image}" alt="${data.title}" class="post-image"/></div>
+                        <p class="description">${data.description}</p>
+                        <div class="post-meta">
+                        <p class="author"><img src="images/${data.author}.png"/><a href="?author=${data.author}">${data.author}</a></p>
+                        <p class="date">${new Date(data.date).toLocaleDateString()}</p>
+                        <ul class="tags">
+                            ${data.tags.map(tag => `<li><a href="?tag=${tag}">#${tag}</a></li>`).join('')}
+                        </ul>
+                        </div>
+                        <a href="?id=${posts[i]}" class="read-more">View Post</a>
+                    `;
+                    document.querySelector('main').appendChild(postElement);
+                });
             });
         })  
-    filterPosts();
 }
 
 function filterPosts() {
