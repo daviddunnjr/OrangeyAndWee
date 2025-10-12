@@ -23,12 +23,18 @@ function loadPosts() {
                     if (id && data.id !== id) return;
 
                     const postElement = document.createElement('article');
+                    if (data.transcription) {
+                        data.transcription = 'Transcription: <span class="transcription">' + data.transcription + '</span>';
+                    }
                     postElement.innerHTML = `
                         <h3 id="${data.id}">${data.title}</h3>
                         <div class="blur-bg" style="background-image:url(images/${data.image})">
                             <img src="images/${data.image}" href="images/${data.image}" alt="${data.title}" class="post-image"/>
                         </div>
-                        <p class="description">${data.description}</p>
+                        <div class="caption">
+                            <p class="description">${data.description || ''}</p>
+                            <p>${data.transcription || ''}</p>
+                        </div>
                         <div class="post-meta">
                             <p class="author">
                                 <img src="images/${data.author}.png"/>
