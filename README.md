@@ -4,5 +4,5 @@ This is a website for two artists and philosophers who operate under the pseudon
 
 # TODO
 
-- user profiles
+- user profiles (if user clicked, display pinned bio at top, else hide)
 - limit amount of posts that display at once
