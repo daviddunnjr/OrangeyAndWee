@@ -213,7 +213,7 @@ article .blur-bg {
     background-color: #888;
     background-blend-mode: soft-light;
 }
-artcle .read-more {
+article .read-more {
     display: block;
     margin-top: 10px;
     color: #007bff;
@@ -221,6 +221,21 @@ artcle .read-more {
 }
 article .read-more:hover {
     text-decoration: underline;
+}
+
+.load-more {
+    display: block;
+    width: 200px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom: 5em;
+    padding: 10px;
+    text-align: center;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 @media (orientation: landscape) {
