@@ -71,7 +71,9 @@ function loadPosts() {
             postElement.innerHTML = `
                 <h3 id="${data.id}">${data.title}</h3>
                 <div class="blur-bg" style="background-image:url(images/${data.image})">
-                    <img src="images/${data.image}" href="images/${data.image}" alt="${data.title}" class="post-image"/>
+                    <a href="images/${data.image}" target="_blank">
+                        <img src="images/${data.image}" alt="${data.title}" class="post-image"/>
+                    </a>
                 </div>
                 <div class="caption">
                     <p class="description">${data.description || ''}</p>
@@ -102,3 +104,8 @@ function loadPosts() {
         }
     }
 }
+
+// Initialize functions on page load
+window.addEventListener('DOMContentLoaded', () => {
+    loadPosts();
+});

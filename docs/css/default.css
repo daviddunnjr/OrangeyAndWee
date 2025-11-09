@@ -1,6 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-@import url('landscape.css');
-@import url('portrait.css');
 
 /* Reset some default browser styles */
 * {
@@ -236,6 +234,9 @@ article .read-more:hover {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+.load-more:hover {
+    background-color: #0056b3;
 }
 
 @media (orientation: landscape) {
