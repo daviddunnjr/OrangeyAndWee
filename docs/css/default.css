@@ -70,64 +70,6 @@ footer {
     bottom: 0;
     width: 100%;
 }
-.recent-entries {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #f1f1f1;
-    border-radius: 5px;
-}
-.recent-entries h2 {
-    font-size: x-large;
-    margin-bottom: 15px;
-}
-.recent-entries h3 {
-    font-size: large;
-    margin-bottom: 10px;
-}
-.recent-entries .entry {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-.recent-entries .entry img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-}
-.recent-entries .entry p {
-    margin-bottom: 10px;
-}
-.recent-entries .entry p.date {
-    font-size: small;
-    color: #888;
-}
-.recent-entries .entry ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-.recent-entries .entry ul li {
-    display: inline;
-    margin-right: 10px;
-}
-.recent-entries .entry ul li a {
-    color: #007bff;
-    text-decoration: none;
-}
-.recent-entries .entry ul li a:hover {
-    text-decoration: underline;
-}
-.recent-entries .entry a.return {
-    display: block;
-    margin-top: 10px;
-    text-align: right;
-    color: #007bff;
-    text-decoration: none;
-}
-.recent-entries .entry a.return:hover {
-    text-decoration: underline;
-}
 
 article {
     margin-bottom: 20px;
